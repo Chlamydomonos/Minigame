@@ -8,6 +8,18 @@ public class MinigameCapability implements IMinigameCapability
     private int runnerType; //0: not runner; 1: still; 2: running; 3-oo:unstable
     private int score;
 
+    public MinigameCapability(int playerType, int runnerType, int score)
+    {
+        this.playerType = playerType;
+        this.runnerType = runnerType;
+        this.score = score;
+    }
+
+    public MinigameCapability()
+    {
+        this(0, 0, 0);
+    }
+
     @Override
     public int getPlayerType()
     {
