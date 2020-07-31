@@ -6,7 +6,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import xyz.chlamydomonos.minigame.block.itemblocks.ItemBlockGameController;
 
-@Mod.EventBusSubscriber()
+@Mod.EventBusSubscriber(modid = Minigame.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemBlockLoader
 {
     public static final Item GAME_CONTROLLER = new ItemBlockGameController();
