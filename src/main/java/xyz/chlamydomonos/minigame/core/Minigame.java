@@ -1,4 +1,4 @@
-package xyz.chlamydomonos.minigame;
+package xyz.chlamydomonos.minigame.core;
 
 import net.minecraftforge.fml.common.Mod;
 

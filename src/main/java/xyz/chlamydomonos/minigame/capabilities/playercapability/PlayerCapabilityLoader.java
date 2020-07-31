@@ -1,4 +1,4 @@
-package xyz.chlamydomonos.minigame.capability;
+package xyz.chlamydomonos.minigame.capabilities.playercapability;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,16 +14,16 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import xyz.chlamydomonos.minigame.Minigame;
+import xyz.chlamydomonos.minigame.core.Minigame;
 
 import javax.annotation.Nullable;
 
 @Mod.EventBusSubscriber()
-public class MinigameCapabilityLoader
+public class PlayerCapabilityLoader
 {
 
-    @CapabilityInject(IMinigameCapability.class)
-    public static Capability<IMinigameCapability> MINIGAME_CAPABILITY;
+    @CapabilityInject(IPlayerCapability.class)
+    public static Capability<IPlayerCapability> PLAYER_CAPABILITY;
 
     @SubscribeEvent
     public static void attachCapability(AttachCapabilitiesEvent<Entity> event)
@@ -31,7 +31,7 @@ public class MinigameCapabilityLoader
         Entity entity = event.getObject();
         if(entity instanceof PlayerEntity)
         {
-            event.addCapability(new ResourceLocation(Minigame.MODID, "minigame"), new MinigameCapabilityProvider());
+            event.addCapability(new ResourceLocation(Minigame.MODID, "player"), new PlayerCapabilityProvider());
         }
     }
 
@@ -40,13 +40,13 @@ public class MinigameCapabilityLoader
     {
         if(!event.isWasDeath())
         {
-            LazyOptional<IMinigameCapability> oldMinigameCap = event.getOriginal().getCapability(MINIGAME_CAPABILITY);
-            LazyOptional<IMinigameCapability> newMinigameCap = event.getPlayer().getCapability(MINIGAME_CAPABILITY);
-            if (oldMinigameCap.isPresent() && newMinigameCap.isPresent())
+            LazyOptional<IPlayerCapability> oldPlayerCap = event.getOriginal().getCapability(PLAYER_CAPABILITY);
+            LazyOptional<IPlayerCapability> newPlayerCap = event.getPlayer().getCapability(PLAYER_CAPABILITY);
+            if (oldPlayerCap.isPresent() && newPlayerCap.isPresent())
             {
-                newMinigameCap.ifPresent(
+                newPlayerCap.ifPresent(
                         (newCap) -> {
-                            oldMinigameCap.ifPresent(
+                            oldPlayerCap.ifPresent(
                                     (oldCap) -> {
                                         newCap.deserializeNBT(oldCap.serializeNBT());
                                     });
@@ -59,18 +59,18 @@ public class MinigameCapabilityLoader
     public static void registerCapability(FMLCommonSetupEvent event)
     {
         CapabilityManager.INSTANCE.register(
-                IMinigameCapability.class,
-                new Capability.IStorage<IMinigameCapability>()
+                IPlayerCapability.class,
+                new Capability.IStorage<IPlayerCapability>()
                 {
                     @Nullable
                     @Override
-                    public INBT writeNBT(Capability<IMinigameCapability> capability, IMinigameCapability instance, Direction side)
+                    public INBT writeNBT(Capability<IPlayerCapability> capability, IPlayerCapability instance, Direction side)
                     {
                         return null;
                     }
 
                     @Override
-                    public void readNBT(Capability<IMinigameCapability> capability, IMinigameCapability instance, Direction side, INBT nbt)
+                    public void readNBT(Capability<IPlayerCapability> capability, IPlayerCapability instance, Direction side, INBT nbt)
                     {
 
                     }

@@ -2,7 +2,7 @@ package xyz.chlamydomonos.minigame.itemgroup;
 
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import xyz.chlamydomonos.minigame.ItemBlockLoader;
+import xyz.chlamydomonos.minigame.core.loaders.ItemBlockLoader;
 
 public class ItemGroupMinigame extends ItemGroup
 {

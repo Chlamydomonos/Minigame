@@ -1,21 +1,21 @@
-package xyz.chlamydomonos.minigame.capability;
+package xyz.chlamydomonos.minigame.capabilities.playercapability;
 
 import net.minecraft.nbt.CompoundNBT;
 
-public class MinigameCapability implements IMinigameCapability
+public class PlayerCapability implements IPlayerCapability
 {
     private int playerType; //0: normal player; 1: runner; 2: chaser
     private int runnerType; //0: not runner; 1: still; 2: running; 3-oo:unstable
     private int score;
 
-    public MinigameCapability(int playerType, int runnerType, int score)
+    public PlayerCapability(int playerType, int runnerType, int score)
     {
         this.playerType = playerType;
         this.runnerType = runnerType;
         this.score = score;
     }
 
-    public MinigameCapability()
+    public PlayerCapability()
     {
         this(0, 0, 0);
     }

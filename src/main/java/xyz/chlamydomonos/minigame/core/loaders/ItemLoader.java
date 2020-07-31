@@ -1,4 +1,4 @@
-package xyz.chlamydomonos.minigame;
+package xyz.chlamydomonos.minigame.core.loaders;
 
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;

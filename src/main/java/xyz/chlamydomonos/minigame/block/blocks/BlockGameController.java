@@ -3,7 +3,7 @@ package xyz.chlamydomonos.minigame.block.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.ResourceLocation;
-import xyz.chlamydomonos.minigame.Minigame;
+import xyz.chlamydomonos.minigame.core.Minigame;
 
 public class BlockGameController extends Block
 {

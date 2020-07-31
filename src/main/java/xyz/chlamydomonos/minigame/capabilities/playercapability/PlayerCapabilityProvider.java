@@ -1,4 +1,4 @@
-package xyz.chlamydomonos.minigame.capability;
+package xyz.chlamydomonos.minigame.capabilities.playercapability;
 
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Direction;
@@ -10,26 +10,26 @@ import net.minecraftforge.common.util.LazyOptional;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class MinigameCapabilityProvider implements ICapabilityProvider, INBTSerializable<CompoundNBT>
+public class PlayerCapabilityProvider implements ICapabilityProvider, INBTSerializable<CompoundNBT>
 {
-    private IMinigameCapability minigameCapability;
+    private IPlayerCapability playerCapability;
 
     @Nonnull
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side)
     {
-        return cap == MinigameCapabilityLoader.MINIGAME_CAPABILITY ? LazyOptional.of(
+        return cap == PlayerCapabilityLoader.PLAYER_CAPABILITY ? LazyOptional.of(
                 () -> {
                     return this.getOrCreateCapability();
                 }).cast() : LazyOptional.empty();
     }
 
     @Nonnull
-    IMinigameCapability getOrCreateCapability()
+    IPlayerCapability getOrCreateCapability()
     {
-        if (this.minigameCapability == null)
-            this.minigameCapability = new MinigameCapability();
-        return this.minigameCapability;
+        if (this.playerCapability == null)
+            this.playerCapability = new PlayerCapability();
+        return this.playerCapability;
     }
 
     @Override

@@ -2,9 +2,9 @@ package xyz.chlamydomonos.minigame.block.itemblocks;
 
 import net.minecraft.item.BlockItem;
 import net.minecraft.util.ResourceLocation;
-import xyz.chlamydomonos.minigame.BlockLoader;
-import xyz.chlamydomonos.minigame.ItemGroupLoader;
-import xyz.chlamydomonos.minigame.Minigame;
+import xyz.chlamydomonos.minigame.core.loaders.BlockLoader;
+import xyz.chlamydomonos.minigame.core.loaders.ItemGroupLoader;
+import xyz.chlamydomonos.minigame.core.Minigame;
 
 public class ItemBlockGameController extends BlockItem
 {

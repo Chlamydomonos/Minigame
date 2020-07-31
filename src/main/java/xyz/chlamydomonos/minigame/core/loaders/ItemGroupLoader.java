@@ -1,4 +1,4 @@
-package xyz.chlamydomonos.minigame;
+package xyz.chlamydomonos.minigame.core.loaders;
 
 import net.minecraft.item.ItemGroup;
 import xyz.chlamydomonos.minigame.itemgroup.ItemGroupMinigame;

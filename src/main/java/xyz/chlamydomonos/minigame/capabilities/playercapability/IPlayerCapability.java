@@ -1,9 +1,9 @@
-package xyz.chlamydomonos.minigame.capability;
+package xyz.chlamydomonos.minigame.capabilities.playercapability;
 
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.common.util.INBTSerializable;
 
-public interface IMinigameCapability extends INBTSerializable<CompoundNBT>
+public interface IPlayerCapability extends INBTSerializable<CompoundNBT>
 {
     int getPlayerType();
     void setPlayerType(int type);

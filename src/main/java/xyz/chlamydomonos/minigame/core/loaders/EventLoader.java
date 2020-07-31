@@ -1,4 +1,4 @@
-package xyz.chlamydomonos.minigame;
+package xyz.chlamydomonos.minigame.core.loaders;
 
 import com.google.common.eventbus.EventBus;
 import net.minecraftforge.fml.common.Mod;
