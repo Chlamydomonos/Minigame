@@ -15,21 +15,21 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
-import xyz.chlamydomonos.minigame.capabilities.bindercapability.BinderType;
-import xyz.chlamydomonos.minigame.capabilities.bindercapability.IBinderCapability;
 import xyz.chlamydomonos.minigame.capabilities.bindercapability.BinderCapabilityLoader;
 import xyz.chlamydomonos.minigame.capabilities.bindercapability.BinderCapabilityProvider;
+import xyz.chlamydomonos.minigame.capabilities.bindercapability.BinderType;
+import xyz.chlamydomonos.minigame.capabilities.bindercapability.IBinderCapability;
 import xyz.chlamydomonos.minigame.core.Minigame;
 import xyz.chlamydomonos.minigame.core.loaders.ItemGroupLoader;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class ItemMapBinder extends Item
+public class ItemSpawnPointBinder extends Item
 {
-    private final String name = "map_binder";
+    private final String name = "spawn_point_binder";
 
-    public ItemMapBinder()
+    public ItemSpawnPointBinder()
     {
         super(new Properties()
                 .group(ItemGroupLoader.MINIGAME)
@@ -41,7 +41,7 @@ public class ItemMapBinder extends Item
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundNBT nbt)
     {
-        return new BinderCapabilityProvider(BinderType.MAP);
+        return new BinderCapabilityProvider(BinderType.SPAWN_POINT);
     }
 
     @Override

@@ -1,4 +1,8 @@
 {
   "itemGroup.minigame_group": "Xiabao Minigame",
-  "block.xbmngm.game_controller": "Game Controller"
+  "block.xbmngm.game_controller": "Game Controller",
+  "item.xbmngm.map_binder": "Map Binder",
+  "item.xbmngm.prepare_zone_binder": "Prepare Zone Binder",
+  "bound_to": "Bound to",
+  "point": "Point"
 }

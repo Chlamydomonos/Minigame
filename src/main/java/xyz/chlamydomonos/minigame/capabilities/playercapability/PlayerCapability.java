@@ -83,11 +83,11 @@ public class PlayerCapability implements IPlayerCapability
     @Override
     public CompoundNBT serializeNBT()
     {
-        CompoundNBT minigameNBT = new CompoundNBT();
-        minigameNBT.putInt("player_type", this.playerType);
-        minigameNBT.putInt("runner_type", this.runnerType);
-        minigameNBT.putInt("score", this.score);
-        return minigameNBT;
+        CompoundNBT playerNBT = new CompoundNBT();
+        playerNBT.putInt("player_type", this.playerType);
+        playerNBT.putInt("runner_type", this.runnerType);
+        playerNBT.putInt("score", this.score);
+        return playerNBT;
     }
 
     @Override

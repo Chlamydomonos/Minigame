@@ -1,4 +1,8 @@
 {
   "itemGroup.minigame_group": "瞎宝小游戏",
-  "block.xbmngm.game_controller": "游戏控制方块"
+  "block.xbmngm.game_controller": "游戏控制方块",
+  "item.xbmngm.map_binder": "地图绑定杖",
+  "item.xbmngm.prepare_zone_binder": "准备区域绑定杖",
+  "bound_to": "§1绑定到",
+  "point": "§1点"
 }
