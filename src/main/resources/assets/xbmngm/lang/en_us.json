@@ -3,6 +3,7 @@
   "block.xbmngm.game_controller": "Game Controller",
   "item.xbmngm.map_binder": "Map Binder",
   "item.xbmngm.prepare_zone_binder": "Prepare Zone Binder",
+  "item.xbmngm.spawn_point_binder": "Spawn Point Binder",
   "bound_to": "Bound to",
   "point": "Point"
 }
