@@ -26,7 +26,7 @@ displayName="Xiabao Minigame" #mandatory
 # A text field displayed in the mod UI
 credits="X'bao! Th'wgha! Chlamydomonos xia'd tschilhib'sgn!" #optional
 # A text field displayed in the mod UI
-authors="Chlamydomonos" #optional
+authors="Chlamydomonos, cumber" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
 A mod for Chlamydomonos' minigame.
