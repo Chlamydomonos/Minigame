@@ -1,9 +1,22 @@
 package xyz.chlamydomonos.minigame.block.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.world.IBlockReader;
+import net.minecraft.world.World;
+import xyz.chlamydomonos.minigame.block.tileentities.TileEntityGameController;
 import xyz.chlamydomonos.minigame.core.Minigame;
+
+import javax.annotation.Nullable;
 
 public class BlockGameController extends Block
 {
@@ -13,5 +26,29 @@ public class BlockGameController extends Block
     {
         super(Properties.create(Material.ROCK).hardnessAndResistance(-1, 6000000));//Same as bedrock
         this.setRegistryName(new ResourceLocation(Minigame.MODID, this.name));
+    }
+
+    @Override
+    public boolean hasTileEntity(BlockState state)
+    {
+        return true;
+    }
+
+    @Nullable
+    @Override
+    public TileEntity createTileEntity(BlockState state, IBlockReader world)
+    {
+        return new TileEntityGameController();
+    }
+
+    @Override
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
+    {
+        if(!worldIn.isRemote && handIn == Hand.MAIN_HAND)
+        {
+            TileEntityGameController tile = (TileEntityGameController) worldIn.getTileEntity(pos);
+            player.sendStatusMessage(new StringTextComponent(tile.test), false);
+        }
+        return ActionResultType.SUCCESS;
     }
 }
