@@ -47,13 +47,16 @@ public class ItemSpawnPointBinder extends Item
     @Override
     public ActionResultType onItemUse(ItemUseContext context)
     {
-        LazyOptional<IBinderCapability> MapBinderCap = context.getItem().getCapability(BinderCapabilityLoader.BINDER_CAPABILITY);
-        MapBinderCap.ifPresent(
-                (s) -> {
-                    s.setPos2(context.getPos());
-                    context.getPlayer().sendMessage(new StringTextComponent("Second point set to " + context.getPos().getX() + ", " + context.getPos().getY() + ", " + context.getPos().getZ()));
-                }
-        );
+        if(!context.getWorld().isRemote)
+        {
+            LazyOptional<IBinderCapability> MapBinderCap = context.getItem().getCapability(BinderCapabilityLoader.BINDER_CAPABILITY);
+            MapBinderCap.ifPresent(
+                    (s) -> {
+                        s.setPos2(context.getPos());
+                        context.getPlayer().sendMessage(new StringTextComponent("Second point set to " + context.getPos().getX() + ", " + context.getPos().getY() + ", " + context.getPos().getZ()));
+                    }
+            );
+        }
 
         return ActionResultType.SUCCESS;
     }
@@ -61,13 +64,16 @@ public class ItemSpawnPointBinder extends Item
     @Override
     public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, PlayerEntity player)
     {
-        LazyOptional<IBinderCapability> MapBinderCap = itemstack.getCapability(BinderCapabilityLoader.BINDER_CAPABILITY);
-        MapBinderCap.ifPresent(
-                (s) -> {
-                    s.setPos1(pos);
-                    player.sendMessage(new StringTextComponent("First point set to " + pos.getX() + ", " + pos.getY() + ", " + pos.getZ()));
-                }
-        );
+        if(!player.getEntityWorld().isRemote)
+        {
+            LazyOptional<IBinderCapability> MapBinderCap = itemstack.getCapability(BinderCapabilityLoader.BINDER_CAPABILITY);
+            MapBinderCap.ifPresent(
+                    (s) -> {
+                        s.setPos1(pos);
+                        player.sendMessage(new StringTextComponent("First point set to " + pos.getX() + ", " + pos.getY() + ", " + pos.getZ()));
+                    }
+            );
+        }
 
         return true;
     }
