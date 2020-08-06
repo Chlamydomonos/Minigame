@@ -1,4 +1,4 @@
-package xyz.chlamydomonos.minigame.capabilities.bindercapability;
+package xyz.chlamydomonos.minigame.capabilities.singlebindercapability;
 
 import net.minecraft.nbt.INBT;
 import net.minecraft.util.Direction;
@@ -12,27 +12,27 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import javax.annotation.Nullable;
 
 @Mod.EventBusSubscriber()
-public class BinderCapabilityLoader
+public class SingleBinderCapabilityLoader
 {
-    @CapabilityInject(IBinderCapability.class)
-    public static Capability<IBinderCapability> BINDER_CAPABILITY;
+    @CapabilityInject(ISingleBinderCapability.class)
+    public static Capability<ISingleBinderCapability> SINGLE_BINDER_CAPABILITY;
 
     @SubscribeEvent
     public static void registerCapability(FMLCommonSetupEvent event)
     {
         CapabilityManager.INSTANCE.register(
-                IBinderCapability.class,
-                new Capability.IStorage<IBinderCapability>()
+                ISingleBinderCapability.class,
+                new Capability.IStorage<ISingleBinderCapability>()
                 {
                     @Nullable
                     @Override
-                    public INBT writeNBT(Capability<IBinderCapability> capability, IBinderCapability instance, Direction side)
+                    public INBT writeNBT(Capability<ISingleBinderCapability> capability, ISingleBinderCapability instance, Direction side)
                     {
                         return null;
                     }
 
                     @Override
-                    public void readNBT(Capability<IBinderCapability> capability, IBinderCapability instance, Direction side, INBT nbt)
+                    public void readNBT(Capability<ISingleBinderCapability> capability, ISingleBinderCapability instance, Direction side, INBT nbt)
                     {
 
                     }

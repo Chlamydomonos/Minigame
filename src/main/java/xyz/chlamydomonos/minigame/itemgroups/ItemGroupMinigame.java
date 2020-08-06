@@ -1,4 +1,4 @@
-package xyz.chlamydomonos.minigame.itemgroup;
+package xyz.chlamydomonos.minigame.itemgroups;
 
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -14,6 +14,6 @@ public class ItemGroupMinigame extends ItemGroup
     @Override
     public ItemStack createIcon()
     {
-        return new ItemStack(ItemBlockLoader.GAME_CONTROLLER.getItem());
+        return new ItemStack(ItemBlockLoader.GAME_CONTROLLER);
     }
 }

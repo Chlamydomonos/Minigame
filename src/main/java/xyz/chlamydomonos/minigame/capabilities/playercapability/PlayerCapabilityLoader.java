@@ -38,21 +38,18 @@ public class PlayerCapabilityLoader
     @SubscribeEvent
     public static void onPlayerCloned(PlayerEvent.Clone event)
     {
-        if(!event.isWasDeath())
+        LazyOptional<IPlayerCapability> oldPlayerCap = event.getOriginal().getCapability(PLAYER_CAPABILITY);
+        LazyOptional<IPlayerCapability> newPlayerCap = event.getPlayer().getCapability(PLAYER_CAPABILITY);
+        if (oldPlayerCap.isPresent() && newPlayerCap.isPresent())
         {
-            LazyOptional<IPlayerCapability> oldPlayerCap = event.getOriginal().getCapability(PLAYER_CAPABILITY);
-            LazyOptional<IPlayerCapability> newPlayerCap = event.getPlayer().getCapability(PLAYER_CAPABILITY);
-            if (oldPlayerCap.isPresent() && newPlayerCap.isPresent())
-            {
-                newPlayerCap.ifPresent(
-                        (newCap) -> {
-                            oldPlayerCap.ifPresent(
-                                    (oldCap) -> {
-                                        newCap.deserializeNBT(oldCap.serializeNBT());
-                                    });
-                        });
+            newPlayerCap.ifPresent(
+                    (newCap) -> {
+                        oldPlayerCap.ifPresent(
+                                (oldCap) -> {
+                                    newCap.deserializeNBT(oldCap.serializeNBT());
+                                });
+                    });
             }
-        }
     }
 
     @SubscribeEvent

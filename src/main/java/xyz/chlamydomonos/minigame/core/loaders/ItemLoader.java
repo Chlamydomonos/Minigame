@@ -13,6 +13,7 @@ public class ItemLoader
     public static final Item MAP_BINDER = new ItemMapBinder();
     public static final Item PREPARE_ZONE_BINDER = new ItemPrepareZoneBinder();
     public static final Item SPAWN_POINT_BINDER = new ItemSpawnPointBinder();
+    public static final Item SUONDEE_METAL_INGOT = new ItemSuondeeMetalIngot();
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event)
@@ -20,7 +21,8 @@ public class ItemLoader
         event.getRegistry().registerAll(
                 MAP_BINDER,
                 PREPARE_ZONE_BINDER,
-                SPAWN_POINT_BINDER
+                SPAWN_POINT_BINDER,
+                SUONDEE_METAL_INGOT
         );
     }
 }
