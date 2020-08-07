@@ -16,6 +16,7 @@ public class ItemLoader
     public static final Item SUONDEE_METAL_INGOT = new ItemSuondeeMetalIngot();
     public static final Item SUONDEE_SWORD = new ItemSuondeeSword();
     public static final Item START_GAME_BUTTON_BINDER = new ItemStartGameButtonBinder();
+    public static final Item PASSIVE_SUONDEE_SWORD = new ItemPassiveSuondeeSword();
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event)
@@ -26,7 +27,9 @@ public class ItemLoader
                 SPAWN_POINT_BINDER,
                 SUONDEE_METAL_INGOT,
                 SUONDEE_SWORD,
-                START_GAME_BUTTON_BINDER
+                START_GAME_BUTTON_BINDER,
+                PASSIVE_SUONDEE_SWORD
+
         );
     }
 }
