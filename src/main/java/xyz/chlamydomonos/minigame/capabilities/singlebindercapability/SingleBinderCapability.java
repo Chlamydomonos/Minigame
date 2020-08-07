@@ -2,10 +2,12 @@ package xyz.chlamydomonos.minigame.capabilities.singlebindercapability;
 
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.math.BlockPos;
+import xyz.chlamydomonos.minigame.capabilities.bindercapability.BinderType;
 
 public class SingleBinderCapability implements ISingleBinderCapability
 {
     private BlockPos pos;
+    private SingleBinderType type;
 
     public SingleBinderCapability()
     {
@@ -25,13 +27,19 @@ public class SingleBinderCapability implements ISingleBinderCapability
     }
 
     @Override
+    public void setType(SingleBinderType type)
+    {
+        this.type = type;
+    }
+
+    @Override
     public CompoundNBT serializeNBT()
     {
         CompoundNBT binderNBT = new CompoundNBT();
         binderNBT.putInt("x", pos.getX());
         binderNBT.putInt("y", pos.getY());
         binderNBT.putInt("z", pos.getZ());
-        return null;
+        return binderNBT;
     }
 
     @Override

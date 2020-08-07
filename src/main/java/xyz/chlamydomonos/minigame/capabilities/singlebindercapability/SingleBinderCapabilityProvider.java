@@ -6,6 +6,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.common.util.LazyOptional;
+import xyz.chlamydomonos.minigame.capabilities.bindercapability.BinderType;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -13,6 +14,11 @@ import javax.annotation.Nullable;
 public class SingleBinderCapabilityProvider implements ICapabilityProvider, INBTSerializable<CompoundNBT>
 {
     private ISingleBinderCapability singleBinderCapability;
+
+    public SingleBinderCapabilityProvider(SingleBinderType type)
+    {
+        this.getOrCreateCapability().setType(type);
+    }
 
     @Nonnull
     @Override
@@ -24,6 +30,7 @@ public class SingleBinderCapabilityProvider implements ICapabilityProvider, INBT
                 }).cast() : LazyOptional.empty();
     }
 
+    @Nonnull
     ISingleBinderCapability getOrCreateCapability()
     {
         if (this.singleBinderCapability == null)

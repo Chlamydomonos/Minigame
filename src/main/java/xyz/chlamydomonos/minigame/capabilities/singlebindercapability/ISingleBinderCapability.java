@@ -8,4 +8,5 @@ public interface ISingleBinderCapability extends INBTSerializable<CompoundNBT>
 {
     BlockPos getPos();
     void setPos(BlockPos pos);
+    void setType(SingleBinderType type);
 }
