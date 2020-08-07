@@ -44,20 +44,17 @@ public class ItemStartGameButtonBinder extends Item {
     }
 
     @Override
-    public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, PlayerEntity player)
+    public ActionResultType onItemUse(ItemUseContext context)
     {
-        if(!player.getEntityWorld().isRemote)
-        {
-            LazyOptional<ISingleBinderCapability> StartGameButtonBinderCap = itemstack.getCapability(SingleBinderCapabilityLoader.SINGLE_BINDER_CAPABILITY);
-            StartGameButtonBinderCap.ifPresent(
-                    (s) -> {
-                        s.setPos(pos);
-                        player.sendMessage(new StringTextComponent("Point set to " + pos.getX() + ", " + pos.getY() + ", " + pos.getZ()));
-                    }
-            );
-        }
+        LazyOptional<ISingleBinderCapability> StartGameButtonBinderCap = context.getItem().getCapability(SingleBinderCapabilityLoader.SINGLE_BINDER_CAPABILITY);
+        StartGameButtonBinderCap.ifPresent(
+                (s) -> {
+                    s.setPos(context.getPos());
+                    if(!context.getWorld().isRemote)
+                        context.getPlayer().sendMessage(new StringTextComponent("Point set to " + context.getPos().getX() + ", " + context.getPos().getY() + ", " + context.getPos().getZ()));
+                });
 
-        return true;
+        return ActionResultType.SUCCESS;
     }
 
     @Override

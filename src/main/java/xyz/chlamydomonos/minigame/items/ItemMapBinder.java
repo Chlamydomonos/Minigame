@@ -47,16 +47,13 @@ public class ItemMapBinder extends Item
     @Override
     public ActionResultType onItemUse(ItemUseContext context)
     {
-        if(!context.getWorld().isRemote)
-        {
-            LazyOptional<IBinderCapability> MapBinderCap = context.getItem().getCapability(BinderCapabilityLoader.BINDER_CAPABILITY);
-            MapBinderCap.ifPresent(
-                    (s) -> {
-                        s.setPos2(context.getPos());
+        LazyOptional<IBinderCapability> MapBinderCap = context.getItem().getCapability(BinderCapabilityLoader.BINDER_CAPABILITY);
+        MapBinderCap.ifPresent(
+                (s) -> {
+                    s.setPos2(context.getPos());
+                    if(!context.getWorld().isRemote)
                         context.getPlayer().sendMessage(new StringTextComponent("Second point set to " + context.getPos().getX() + ", " + context.getPos().getY() + ", " + context.getPos().getZ()));
-                    }
-            );
-        }
+                });
 
         return ActionResultType.SUCCESS;
     }
@@ -64,16 +61,13 @@ public class ItemMapBinder extends Item
     @Override
     public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, PlayerEntity player)
     {
-        if(!player.getEntityWorld().isRemote)
-        {
-            LazyOptional<IBinderCapability> MapBinderCap = itemstack.getCapability(BinderCapabilityLoader.BINDER_CAPABILITY);
-            MapBinderCap.ifPresent(
-                    (s) -> {
-                        s.setPos1(pos);
+        LazyOptional<IBinderCapability> MapBinderCap = itemstack.getCapability(BinderCapabilityLoader.BINDER_CAPABILITY);
+        MapBinderCap.ifPresent(
+                (s) -> {
+                    s.setPos1(pos);
+                    if(!player.world.isRemote)
                         player.sendMessage(new StringTextComponent("First point set to " + pos.getX() + ", " + pos.getY() + ", " + pos.getZ()));
-                    }
-            );
-        }
+                });
 
         return true;
     }
