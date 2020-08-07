@@ -14,6 +14,7 @@ public class ItemLoader
     public static final Item PREPARE_ZONE_BINDER = new ItemPrepareZoneBinder();
     public static final Item SPAWN_POINT_BINDER = new ItemSpawnPointBinder();
     public static final Item SUONDEE_METAL_INGOT = new ItemSuondeeMetalIngot();
+    public static final Item SUONDEE_SWORD = new ItemSuondeeSword();
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event)
@@ -22,7 +23,8 @@ public class ItemLoader
                 MAP_BINDER,
                 PREPARE_ZONE_BINDER,
                 SPAWN_POINT_BINDER,
-                SUONDEE_METAL_INGOT
+                SUONDEE_METAL_INGOT,
+                SUONDEE_SWORD
         );
     }
 }
