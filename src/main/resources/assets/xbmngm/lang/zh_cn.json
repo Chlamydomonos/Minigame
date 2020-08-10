@@ -9,6 +9,11 @@
   "item.xbmngm.suondee_metal_ingot": "Suondee金属锭",
   "item.xbmngm.suondee_sword": "Suondee之剑",
   "item.xbmngm.passive_suondee_sword": "钝化的Suondee之剑",
-  "bound_to": "§1绑定到",
-  "point": "§1点"
+  "item.xbmngm.compressed_suondee_sword": "压缩Suondee之剑",
+  "item.xbmngm.recompressed_suondee_sword": "再压缩Suondee之剑",
+  "item.xbmngm.dense_suondee_sword": "致密Suondee之剑",
+  "item.xbmngm.shang_di_sword": "上帝之剑",
+  "bound_to": "§5绑定到",
+  "point": "§5点",
+  "not_sword": "§8这不是一把剑"
 }

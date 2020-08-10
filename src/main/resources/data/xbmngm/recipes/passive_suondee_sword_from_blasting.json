@@ -1,9 +1,9 @@
 {
-  "type": "minecraft:smelting",
+  "type": "minecraft:blasting",
   "ingredient": {
     "item": "xbmngm:suondee_sword"
   },
   "result": "xbmngm:passive_suondee_sword",
   "experience": 1.0,
-  "cooking_time": 400
+  "cooking_time": 200
 }

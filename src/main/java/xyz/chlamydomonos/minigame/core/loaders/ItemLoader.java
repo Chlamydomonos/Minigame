@@ -17,6 +17,10 @@ public class ItemLoader
     public static final Item SUONDEE_SWORD = new ItemSuondeeSword();
     public static final Item START_GAME_BUTTON_BINDER = new ItemStartGameButtonBinder();
     public static final Item PASSIVE_SUONDEE_SWORD = new ItemPassiveSuondeeSword();
+    public static final Item COMPRESSED_SUONDEE_SWORD = new ItemCompressedSuondeeSword();
+    public static final Item RECOMPRESSED_SUONDEE_SWORD = new ItemRecompressedSuondeeSword();
+    public static final Item DENSE_SUONDEE_SWORD = new ItemDenseSuondeeSword();
+    public static final Item SHANG_DI_SWORD = new ItemShangDiSword();
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event)
@@ -28,8 +32,11 @@ public class ItemLoader
                 SUONDEE_METAL_INGOT,
                 SUONDEE_SWORD,
                 START_GAME_BUTTON_BINDER,
-                PASSIVE_SUONDEE_SWORD
-
+                PASSIVE_SUONDEE_SWORD,
+                COMPRESSED_SUONDEE_SWORD,
+                RECOMPRESSED_SUONDEE_SWORD,
+                DENSE_SUONDEE_SWORD,
+                SHANG_DI_SWORD
         );
     }
 }

@@ -5,6 +5,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.LightningBoltEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
@@ -25,9 +26,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class ItemSuondeeSword extends SwordItem
+public class ItemShangDiSword extends SwordItem
 {
-    private String name = "suondee_sword";
+    private String name = "shang_di_sword";
 
     private List<BlockPos> webs;
     private BlockPos origin;
@@ -71,7 +72,7 @@ public class ItemSuondeeSword extends SwordItem
         }
     };
 
-    public ItemSuondeeSword()
+    public ItemShangDiSword()
     {
         super(itemTier, 1, 0, new Properties().group(ItemGroupLoader.MINIGAME_MISC));
         this.setRegistryName(new ResourceLocation(Minigame.MODID, this.name));
@@ -83,11 +84,9 @@ public class ItemSuondeeSword extends SwordItem
         DamageSource source = target.getLastDamageSource();
         World world = attacker.world;
 
-        boolean result = super.hitEntity(stack, target, attacker);
-
         this.drawSuondeea(Minecraft.getInstance().world, attacker.getPosition());
 
-        if(result && !world.isRemote)
+        if(!world.isRemote)
         {
             AxisAlignedBB aabb = attacker.getBoundingBox().grow(16.0D);
             List<LivingEntity> entities = world.getEntitiesWithinAABB(LivingEntity.class, aabb);
@@ -110,7 +109,7 @@ public class ItemSuondeeSword extends SwordItem
                 ((ServerWorld) world).addLightningBolt(bolt);
             }
         }
-        return result;
+        return true;
     }
 
     @Override
@@ -130,7 +129,7 @@ public class ItemSuondeeSword extends SwordItem
                 }
             }
         }
-        return super.onBlockDestroyed(stack, worldIn, state, pos, entityLiving);
+        return true;
     }
 
     private void drawSuondeea(World world, BlockPos pos)

@@ -14,11 +14,12 @@ import xyz.chlamydomonos.minigame.core.loaders.ItemGroupLoader;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class ItemPassiveSuondeeSword extends Item
+public class ItemRecompressedSuondeeSword extends Item
 {
-    private String name = "passive_suondee_sword";
+    private String name = "recompressed_suondee_sword";
 
-    public ItemPassiveSuondeeSword() {
+    public ItemRecompressedSuondeeSword()
+    {
         super(new Properties().group(ItemGroupLoader.MINIGAME_MISC));
         this.setRegistryName(new ResourceLocation(Minigame.MODID, this.name));
     }
