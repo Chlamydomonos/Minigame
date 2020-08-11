@@ -12,10 +12,13 @@
   "item.xbmngm.compressed_suondee_sword": "Compressed Suondee Sword",
   "item.xbmngm.recompressed_suondee_sword": "Recompressed Suondee Sword",
   "item.xbmngm.dense_suondee_sword": "Dense Suondee Sword",
-  "item.xbmngm.shang_di_sword": "上帝 Sword §8Without an English translation",
+  "item.xbmngm.shang_di_sword": "上帝 Sword §8without an English translation",
+  "item.xbmngm.suondee_axe": "Suondee Axe",
+  "item.xbmngm.passive_suondee_axe": "Passive Suondee Axe",
   "bound_to": "§5Bound to",
   "point": "§5Point",
   "not_sword": "§8This is not a sword",
+  "not_axe": "§8This is not an axe",
   "game_controller.tip1": "Please put binders in slots by color",
   "game_controller.tip2": "Spawn point binder slots needn't be full"
 }

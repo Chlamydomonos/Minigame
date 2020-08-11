@@ -21,6 +21,8 @@ public class ItemLoader
     public static final Item RECOMPRESSED_SUONDEE_SWORD = new ItemRecompressedSuondeeSword();
     public static final Item DENSE_SUONDEE_SWORD = new ItemDenseSuondeeSword();
     public static final Item SHANG_DI_SWORD = new ItemShangDiSword();
+    public static final Item SUONDEE_AXE = new ItemSuondeeAxe();
+    public static final Item PASSIVE_SUONDEE_AXE = new ItemPassiveSuondeeAxe();
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event)
@@ -36,7 +38,9 @@ public class ItemLoader
                 COMPRESSED_SUONDEE_SWORD,
                 RECOMPRESSED_SUONDEE_SWORD,
                 DENSE_SUONDEE_SWORD,
-                SHANG_DI_SWORD
+                SHANG_DI_SWORD,
+                SUONDEE_AXE,
+                PASSIVE_SUONDEE_AXE
         );
     }
 }
