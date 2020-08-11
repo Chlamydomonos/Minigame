@@ -4,6 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -13,6 +15,7 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.network.NetworkHooks;
 import xyz.chlamydomonos.minigame.block.tileentities.TileEntityGameController;
 import xyz.chlamydomonos.minigame.core.Minigame;
 
@@ -47,7 +50,8 @@ public class BlockGameController extends Block
         if(!worldIn.isRemote && handIn == Hand.MAIN_HAND)
         {
             TileEntityGameController tile = (TileEntityGameController) worldIn.getTileEntity(pos);
-            player.sendStatusMessage(new StringTextComponent(tile.test), false);
+            tile.start();
+            NetworkHooks.openGui((ServerPlayerEntity) player, tile, (PacketBuffer packerBuffer) -> packerBuffer.writeBlockPos(tile.getPos()));
         }
         return ActionResultType.SUCCESS;
     }

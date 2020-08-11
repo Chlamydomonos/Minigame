@@ -33,6 +33,12 @@ public class SingleBinderCapability implements ISingleBinderCapability
     }
 
     @Override
+    public SingleBinderType getType()
+    {
+        return type;
+    }
+
+    @Override
     public CompoundNBT serializeNBT()
     {
         CompoundNBT binderNBT = new CompoundNBT();

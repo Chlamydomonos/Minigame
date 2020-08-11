@@ -15,5 +15,7 @@
   "item.xbmngm.shang_di_sword": "上帝 Sword §8Without an English translation",
   "bound_to": "§5Bound to",
   "point": "§5Point",
-  "not_sword": "§8This is not a sword"
+  "not_sword": "§8This is not a sword",
+  "game_controller.tip1": "Please put binders in slots by color",
+  "game_controller.tip2": "Spawn point binder slots needn't be full"
 }

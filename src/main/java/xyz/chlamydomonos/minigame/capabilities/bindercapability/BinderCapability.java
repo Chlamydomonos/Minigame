@@ -22,6 +22,12 @@ public class BinderCapability implements IBinderCapability
     }
 
     @Override
+    public BinderType getType()
+    {
+        return type;
+    }
+
+    @Override
     public BlockPos getPos1()
     {
         return this.pos1;

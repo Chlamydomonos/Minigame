@@ -15,5 +15,7 @@
   "item.xbmngm.shang_di_sword": "上帝之剑",
   "bound_to": "§5绑定到",
   "point": "§5点",
-  "not_sword": "§8这不是一把剑"
+  "not_sword": "§8这不是一把剑",
+  "game_controller.tip1": "请按颜色在物品栏中放置对应的绑定杖",
+  "game_controller.tip2": "重生点绑定杖槽可以不放满"
 }

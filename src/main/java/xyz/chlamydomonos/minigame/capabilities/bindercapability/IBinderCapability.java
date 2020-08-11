@@ -11,4 +11,5 @@ public interface IBinderCapability extends INBTSerializable<CompoundNBT>
     BlockPos getPos2();
     void setPos2(BlockPos pos2);
     void setType(BinderType type);
+    BinderType getType();
 }

@@ -13,10 +13,11 @@ import javax.annotation.Nullable;
 public class BinderCapabilityProvider implements ICapabilityProvider, INBTSerializable<CompoundNBT>
 {
     private IBinderCapability binderCapability;
+    private BinderType type;
 
     public BinderCapabilityProvider(BinderType type)
     {
-        this.getOrCreateCapability().setType(type);
+        this.type = type;
     }
 
     @Nonnull
@@ -24,16 +25,17 @@ public class BinderCapabilityProvider implements ICapabilityProvider, INBTSerial
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side)
     {
         return cap == BinderCapabilityLoader.BINDER_CAPABILITY ? LazyOptional.of(
-                () -> {
-                    return this.getOrCreateCapability();
-                }).cast() : LazyOptional.empty();
+                () -> this.getOrCreateCapability()).cast() : LazyOptional.empty();
     }
 
     @Nonnull
     IBinderCapability getOrCreateCapability()
     {
         if (this.binderCapability == null)
+        {
             this.binderCapability = new BinderCapability();
+            this.binderCapability.setType(this.type);
+        }
         return this.binderCapability;
     }
 
