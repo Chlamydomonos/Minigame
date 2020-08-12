@@ -1,4 +1,5 @@
 {
+  "suondeea": "§7Suondeea",
   "itemGroup.minigame_group": "Xiabao Minigame",
   "itemGroup.minigame_misc_group": "Xiabao Minigame - Miscellaneous",
   "block.xbmngm.game_controller": "Game Controller",
@@ -15,10 +16,15 @@
   "item.xbmngm.shang_di_sword": "上帝 Sword §8without an English translation",
   "item.xbmngm.suondee_axe": "Suondee Axe",
   "item.xbmngm.passive_suondee_axe": "Passive Suondee Axe",
+  "item.xbmngm.compressed_suondee_axe": "Compressed Suondee Axe",
+  "item.xbmngm.recompressed_suondee_axe": "Recompressed Suondee Axe",
+  "item.xbmngm.dense_suondee_axe": "Dense Suondee Axe",
+  "item.xbmngm.shang_di_axe": "上帝 Axe §8without an English translation",
+  "item.xbmngm.suondee_material": "Suondee Material",
+  "item.xbmngm.suondee_metal_nugget": "Suondee Metal Nugget",
   "bound_to": "§5Bound to",
   "point": "§5Point",
-  "not_sword": "§8This is not a sword",
-  "not_axe": "§8This is not an axe",
-  "game_controller.tip1": "Please put binders in slots by color",
-  "game_controller.tip2": "Spawn point binder slots needn't be full"
+  "not_sword": "§7This is not a sword",
+  "not_axe": "§7This is not an axe",
+  "game_controller.tip": "Please put binders in slots by color"
 }

@@ -1,4 +1,5 @@
 {
+  "suondeea": "§7Suondeea",
   "itemGroup.minigame_group": "瞎宝小游戏",
   "itemGroup.minigame_misc_group": "瞎宝小游戏-杂项",
   "block.xbmngm.game_controller": "游戏控制方块",
@@ -15,10 +16,15 @@
   "item.xbmngm.shang_di_sword": "上帝之剑",
   "item.xbmngm.suondee_axe": "Suondee之斧",
   "item.xbmngm.passive_suondee_axe": "钝化的Suondee之斧",
+  "item.xbmngm.compressed_suondee_axe": "压缩Suondee之斧",
+  "item.xbmngm.recompressed_suondee_axe": "再压缩Suondee之斧",
+  "item.xbmngm.dense_suondee_axe": "致密Suondee之斧",
+  "item.xbmngm.shang_di_axe": "上帝之斧",
+  "item.xbmngm.suondee_material": "Suondee物质",
+  "item.xbmngm.suondee_metal_nugget": "Suondee金属粒",
   "bound_to": "§5绑定到",
   "point": "§5点",
-  "not_sword": "§8这不是一把剑",
-  "not_axe": "§8这不是一把斧",
-  "game_controller.tip1": "请按颜色在物品栏中放置对应的绑定杖",
-  "game_controller.tip2": "重生点绑定杖槽可以不放满"
+  "not_sword": "§7这不是一把剑",
+  "not_axe": "§7这不是一把斧",
+  "game_controller.tip": "请按颜色在物品栏中放置对应的绑定杖"
 }

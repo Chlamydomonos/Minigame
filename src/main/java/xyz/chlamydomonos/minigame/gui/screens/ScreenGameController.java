@@ -30,8 +30,7 @@ public class ScreenGameController extends ContainerScreen<ContainerGameControlle
     {
         //魔数不能怪我，原版就这么写的
         this.font.drawString(I18n.format("block.xbmngm.game_controller"), 4, 4, 4210752);
-        this.font.drawString(I18n.format("game_controller.tip1"), 4, 14, 4210752);
-        this.font.drawString(I18n.format("game_controller.tip2"), 4, 48, 4210752);
+        this.font.drawString(I18n.format("game_controller.tip"), 4, 14, 4210752);
     }
 
     @Override

@@ -14,13 +14,13 @@ import xyz.chlamydomonos.minigame.core.loaders.ContainerLoader;
 
 public class ContainerGameController extends Container
 {
-    private IntArray information;
+    private IntArray intInit;
 
     public ContainerGameController(int id, PlayerInventory playerInventory, BlockPos pos, World world, IntArray intArray)
     {
         super(ContainerLoader.GAME_CONTROLLER, id);
-        this.information = intArray;
-        trackIntArray(this.information);
+        this.intInit = intArray;
+        trackIntArray(this.intInit);
         TileEntityGameController tileEntity = (TileEntityGameController) world.getTileEntity(pos);
         this.addSlot(new Slot(tileEntity.getInventory(), 0, 8,30));
         this.addSlot(new Slot(tileEntity.getInventory(), 1, 32,30));
@@ -74,6 +74,6 @@ public class ContainerGameController extends Container
     }
 
     public IIntArray getIntArray() {
-        return information;
+        return intInit;
     }
 }

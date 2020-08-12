@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "xbmngm:suondee_axe"
+  },
+  "result": "xbmngm:passive_suondee_axe",
+  "experience": 1.0,
+  "cooking_time": 400
+}

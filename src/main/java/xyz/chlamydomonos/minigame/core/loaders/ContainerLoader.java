@@ -19,7 +19,7 @@ import xyz.chlamydomonos.minigame.gui.screens.ScreenGameController;
 @Mod.EventBusSubscriber(modid = Minigame.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ContainerLoader
 {
-    public static final ContainerType<ContainerGameController> GAME_CONTROLLER = (ContainerType<ContainerGameController>) IForgeContainerType.create((int windowId, PlayerInventory inv, PacketBuffer data) -> new ContainerGameController(windowId, inv, data.readBlockPos(), Minecraft.getInstance().world.getWorld(), new IntArray(48))).setRegistryName("container_game_controller");
+    public static final ContainerType<ContainerGameController> GAME_CONTROLLER = (ContainerType<ContainerGameController>) IForgeContainerType.create((int windowId, PlayerInventory inv, PacketBuffer data) -> new ContainerGameController(windowId, inv, data.readBlockPos(), Minecraft.getInstance().world.getWorld(), new IntArray(1))).setRegistryName("container_game_controller");
 
     @SubscribeEvent
     public static void registerContainers(RegistryEvent.Register<ContainerType<?>> event)

@@ -13,6 +13,7 @@ import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IntArray;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -20,6 +21,8 @@ import net.minecraftforge.common.util.LazyOptional;
 import xyz.chlamydomonos.minigame.capabilities.bindercapability.BinderCapabilityLoader;
 import xyz.chlamydomonos.minigame.capabilities.bindercapability.BinderType;
 import xyz.chlamydomonos.minigame.capabilities.bindercapability.IBinderCapability;
+import xyz.chlamydomonos.minigame.capabilities.playercapability.IPlayerCapability;
+import xyz.chlamydomonos.minigame.capabilities.playercapability.PlayerCapabilityLoader;
 import xyz.chlamydomonos.minigame.capabilities.singlebindercapability.ISingleBinderCapability;
 import xyz.chlamydomonos.minigame.capabilities.singlebindercapability.SingleBinderCapabilityLoader;
 import xyz.chlamydomonos.minigame.capabilities.singlebindercapability.SingleBinderType;
@@ -27,16 +30,17 @@ import xyz.chlamydomonos.minigame.core.loaders.TileEntityLoader;
 import xyz.chlamydomonos.minigame.gui.containers.ContainerGameController;
 
 import javax.annotation.Nullable;
-import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.List;
 
 public class TileEntityGameController extends TileEntity implements ITickableTileEntity, INamedContainerProvider
 {
     private Inventory inventory = new Inventory(9);
-    private IntArray information = new IntArray(48);
-
-    private boolean initialized = false;
+    private IntArray intInit = new IntArray(1);
+    private List<PlayerEntity> players;
 
     private NonNullList<ItemStack> controllerContents = NonNullList.withSize(27, ItemStack.EMPTY);
+
+    private boolean inGame = false;
 
     public TileEntityGameController()
     {
@@ -59,15 +63,22 @@ public class TileEntityGameController extends TileEntity implements ITickableTil
     @Override
     public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity)
     {
-        return new ContainerGameController(i, playerInventory, this.pos, this.world, information);
+        return new ContainerGameController(i, playerInventory, this.pos, this.world, intInit);
     }
 
     @Override
     public void tick()
     {
-        if(!this.initialized)
+        if(this.intInit.get(0) != 0)
         {
             this.initMap();
+        }
+        else
+        {
+            if(this.inGame)
+            {
+                this.restrictPlayers();
+            }
         }
     }
 
@@ -93,78 +104,159 @@ public class TileEntityGameController extends TileEntity implements ITickableTil
 
     public void start()
     {
-        this.initialized = false;
+        this.intInit.set(0, 0);
     }
 
     private void initMap()
     {
-        final boolean[] ok = {false};
-
-        for (int i = 0; i < 48; i++)
-            this.information.set(i, 0);
-
-        LazyOptional<IBinderCapability> cap1 = inventory.getStackInSlot(0).getCapability(BinderCapabilityLoader.BINDER_CAPABILITY);
-        cap1.ifPresent(
-                (s) -> {
-                    ok[0] = true;
-                    BlockPos pos1 = s.getPos1();
-                    BlockPos pos2 = s.getPos2();
-                    int[] temp = {pos1.getX(), pos1.getY(), pos1.getZ(), pos2.getX(), pos2.getY(), pos2.getZ()};
-                    if((temp[0] == temp[3] && temp[1] == temp[4] && temp[2] == temp[5]) || s.getType() != BinderType.MAP)
-                        ok[0] = false;
-                    else
-                    {
-                        for (int i = 0; i < 6; i++)
-                            this.information.set(i, temp[i]);
-                        ok[0] = true;
-                    }
-                }
-        );
-
-        if(ok[0])
-            ok[0] = false;
+        LazyOptional<IBinderCapability> map = inventory.getStackInSlot(0).getCapability(BinderCapabilityLoader.BINDER_CAPABILITY);
+        map.ifPresent((s) -> {
+            if(s.getType() == BinderType.MAP)
+                intInit.set(0, 1);
+        });
+        if(intInit.get(0) == 1)
+            intInit.set(0, 0);
         else
             return;
 
-        LazyOptional<IBinderCapability> cap2 = inventory.getStackInSlot(1).getCapability(BinderCapabilityLoader.BINDER_CAPABILITY);
-        cap2.ifPresent(
-                (s) -> {
-                    ok[0] = true;
-                    BlockPos pos1 = s.getPos1();
-                    BlockPos pos2 = s.getPos2();
-                    int[] temp = {pos1.getX(), pos1.getY(), pos1.getZ(), pos2.getX(), pos2.getY(), pos2.getZ()};
-                    if((temp[0] == temp[3] && temp[1] == temp[4] && temp[2] == temp[5]) || s.getType() != BinderType.PREPARE_ZONE)
-                        ok[0] = false;
-                    else
-                    {
-                        for (int i = 0; i < 6; i++)
-                            this.information.set(i + 6, temp[i]);
-                        ok[0] = true;
-                    }
-                }
-        );
-
-        if(ok[0])
-            ok[0] = false;
+        LazyOptional<IBinderCapability> prepareZone = inventory.getStackInSlot(1).getCapability(BinderCapabilityLoader.BINDER_CAPABILITY);
+        prepareZone.ifPresent((s) -> {
+            if(s.getType() == BinderType.PREPARE_ZONE)
+                intInit.set(0, 1);
+        });
+        if(intInit.get(0) == 1)
+            intInit.set(0, 0);
         else
             return;
-        
-        LazyOptional<ISingleBinderCapability> cap3 = inventory.getStackInSlot(2).getCapability(SingleBinderCapabilityLoader.SINGLE_BINDER_CAPABILITY);
-        cap3.ifPresent(
-                (s) -> {
-                    ok[0] = true;
-                    BlockPos pos1 = s.getPos();
-                    int[] temp = {pos1.getX(), pos1.getY(), pos1.getZ()};
-                    if(s.getType() != SingleBinderType.START_GAME_BUTTON)
-                        ok[0] = false;
-                    else
-                    {
-                        for (int i = 0; i < 3; i++)
-                        {
-                            this.information.set(i + 12, temp[i]);
-                        }
-                    }
+
+        LazyOptional<ISingleBinderCapability> startGameButton = inventory.getStackInSlot(2).getCapability(SingleBinderCapabilityLoader.SINGLE_BINDER_CAPABILITY);
+        startGameButton.ifPresent((s) -> {
+            if(s.getType() == SingleBinderType.START_GAME_BUTTON)
+                intInit.set(0, 1);
+        });
+        if(intInit.get(0) == 1)
+            intInit.set(0, 0);
+        else
+            return;
+
+        LazyOptional<ISingleBinderCapability> aiAmountSetter = inventory.getStackInSlot(3).getCapability(SingleBinderCapabilityLoader.SINGLE_BINDER_CAPABILITY);
+        aiAmountSetter.ifPresent((s) -> {
+            if(s.getType() == SingleBinderType.START_GAME_BUTTON)
+                intInit.set(0, 1);
+        });
+        if(intInit.get(0) == 1)
+            intInit.set(0, 0);
+        else
+            return;
+
+        LazyOptional<IBinderCapability> spawnPoint1 = inventory.getStackInSlot(1).getCapability(BinderCapabilityLoader.BINDER_CAPABILITY);
+        spawnPoint1.ifPresent((s) -> {
+            if(s.getType() == BinderType.SPAWN_POINT)
+                intInit.set(0, 1);
+        });
+        if(intInit.get(0) == 1)
+            intInit.set(0, 0);
+        else
+            return;
+
+        LazyOptional<IBinderCapability> spawnPoint2 = inventory.getStackInSlot(1).getCapability(BinderCapabilityLoader.BINDER_CAPABILITY);
+        spawnPoint2.ifPresent((s) -> {
+            if(s.getType() == BinderType.SPAWN_POINT)
+                intInit.set(0, 1);
+        });
+        if(intInit.get(0) == 1)
+            intInit.set(0, 0);
+        else
+            return;
+
+        LazyOptional<IBinderCapability> spawnPoint3 = inventory.getStackInSlot(1).getCapability(BinderCapabilityLoader.BINDER_CAPABILITY);
+        spawnPoint3.ifPresent((s) -> {
+            if(s.getType() == BinderType.SPAWN_POINT)
+                intInit.set(0, 1);
+        });
+        if(intInit.get(0) == 1)
+            intInit.set(0, 0);
+        else
+            return;
+
+        LazyOptional<IBinderCapability> spawnPoint4 = inventory.getStackInSlot(1).getCapability(BinderCapabilityLoader.BINDER_CAPABILITY);
+        spawnPoint4.ifPresent((s) -> {
+            if(s.getType() == BinderType.SPAWN_POINT)
+                intInit.set(0, 1);
+        });
+        if(intInit.get(0) == 1)
+            intInit.set(0, 0);
+        else
+            return;
+
+        LazyOptional<IBinderCapability> spawnPoint5 = inventory.getStackInSlot(1).getCapability(BinderCapabilityLoader.BINDER_CAPABILITY);
+        spawnPoint5.ifPresent((s) -> {
+            if(s.getType() == BinderType.SPAWN_POINT)
+                intInit.set(0, 1);
+        });
+        if(intInit.get(0) == 1)
+            intInit.set(0, 0);
+        else
+            return;
+    }
+
+    public void startGame()
+    {
+        this.inGame = true;
+
+        final int[] prepareZoneXYZ = {0, 0, 0, 0, 0, 0};
+        LazyOptional<IBinderCapability> prepareZoneCap = inventory.getStackInSlot(0).getCapability(BinderCapabilityLoader.BINDER_CAPABILITY);
+        prepareZoneCap.ifPresent((s) -> {
+            BlockPos pos1 = s.getPos1();
+            BlockPos pos2 = s.getPos2();
+            prepareZoneXYZ[0] = pos1.getX();
+            prepareZoneXYZ[1] = pos1.getY();
+            prepareZoneXYZ[2] = pos1.getZ();
+            prepareZoneXYZ[3] = pos2.getX();
+            prepareZoneXYZ[4] = pos2.getY();
+            prepareZoneXYZ[5] = pos2.getZ();
+        });
+
+        AxisAlignedBB prepareZone = new AxisAlignedBB(prepareZoneXYZ[0], prepareZoneXYZ[1], prepareZoneXYZ[2], prepareZoneXYZ[3], prepareZoneXYZ[4], prepareZoneXYZ[5]);
+        this.players = this.world.getEntitiesWithinAABB(PlayerEntity.class, prepareZone);
+        for (int i = 0; i < players.size(); i++)
+        {
+            PlayerEntity playerEntity = players.get(i);
+            LazyOptional<IPlayerCapability> playerCap = playerEntity.getCapability(PlayerCapabilityLoader.PLAYER_CAPABILITY);
+            int finalI = i;
+            playerCap.ifPresent((s) -> {
+                if(finalI <= players.size() / 5)
+                {
+                    s.setPlayerType(2);
+                    s.setRunnerType(0);
                 }
-        );
+                else
+                {
+                    s.setPlayerType(1);
+                    s.setRunnerType(2);
+                }
+            });
+
+            if(i <= players.size() / 5)
+            {
+                //to be continued
+            }
+        }
+    }
+
+    private void restrictPlayers()
+    {
+        final int[] mapXYZ = {0, 0, 0, 0, 0, 0};
+        LazyOptional<IBinderCapability> mapCap = inventory.getStackInSlot(0).getCapability(BinderCapabilityLoader.BINDER_CAPABILITY);
+        mapCap.ifPresent((s) -> {
+            BlockPos pos1 = s.getPos1();
+            BlockPos pos2 = s.getPos2();
+            mapXYZ[0] = pos1.getX();
+            mapXYZ[1] = pos1.getY();
+            mapXYZ[2] = pos1.getZ();
+            mapXYZ[3] = pos2.getX();
+            mapXYZ[4] = pos2.getY();
+            mapXYZ[5] = pos2.getZ();
+        });
     }
 }
