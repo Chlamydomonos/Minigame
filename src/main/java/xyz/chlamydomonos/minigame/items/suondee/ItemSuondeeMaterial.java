@@ -1,4 +1,4 @@
-package xyz.chlamydomonos.minigame.items;
+package xyz.chlamydomonos.minigame.items.suondee;
 
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -14,11 +14,11 @@ import xyz.chlamydomonos.minigame.core.loaders.ItemGroupLoader;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class ItemRecompressedSuondeeSword extends Item
+public class ItemSuondeeMaterial extends Item
 {
-    private String name = "recompressed_suondee_sword";
+    private String name = "suondee_material";
 
-    public ItemRecompressedSuondeeSword()
+    public ItemSuondeeMaterial()
     {
         super(new Properties().group(ItemGroupLoader.MINIGAME_MISC));
         this.setRegistryName(new ResourceLocation(Minigame.MODID, this.name));
@@ -27,6 +27,6 @@ public class ItemRecompressedSuondeeSword extends Item
     @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn)
     {
-        tooltip.add(new StringTextComponent(I18n.format("not_sword")));
+        tooltip.add(new StringTextComponent(I18n.format("suondeea")));
     }
 }

@@ -6,6 +6,11 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import xyz.chlamydomonos.minigame.core.Minigame;
 import xyz.chlamydomonos.minigame.items.*;
+import xyz.chlamydomonos.minigame.items.suondee.ItemSuondeeMaterial;
+import xyz.chlamydomonos.minigame.items.suondee.ItemSuondeeMetalIngot;
+import xyz.chlamydomonos.minigame.items.suondee.ItemSuondeeMetalNugget;
+import xyz.chlamydomonos.minigame.items.suondee.axe.*;
+import xyz.chlamydomonos.minigame.items.suondee.sword.*;
 
 @Mod.EventBusSubscriber(modid = Minigame.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemLoader

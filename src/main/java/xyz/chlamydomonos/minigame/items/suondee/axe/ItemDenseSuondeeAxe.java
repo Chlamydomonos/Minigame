@@ -1,4 +1,4 @@
-package xyz.chlamydomonos.minigame.items;
+package xyz.chlamydomonos.minigame.items.suondee.axe;
 
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -14,11 +14,11 @@ import xyz.chlamydomonos.minigame.core.loaders.ItemGroupLoader;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class ItemSuondeeMaterial extends Item
+public class ItemDenseSuondeeAxe extends Item
 {
-    private String name = "suondee_material";
+    private String name = "dense_suondee_axe";
 
-    public ItemSuondeeMaterial()
+    public ItemDenseSuondeeAxe()
     {
         super(new Properties().group(ItemGroupLoader.MINIGAME_MISC));
         this.setRegistryName(new ResourceLocation(Minigame.MODID, this.name));
@@ -27,6 +27,6 @@ public class ItemSuondeeMaterial extends Item
     @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn)
     {
-        tooltip.add(new StringTextComponent(I18n.format("suondeea")));
+        tooltip.add(new StringTextComponent(I18n.format("not_axe")));
     }
 }

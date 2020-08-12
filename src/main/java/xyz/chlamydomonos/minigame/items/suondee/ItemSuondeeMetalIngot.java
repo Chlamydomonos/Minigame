@@ -1,4 +1,4 @@
-package xyz.chlamydomonos.minigame.items;
+package xyz.chlamydomonos.minigame.items.suondee;
 
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;

@@ -1,4 +1,4 @@
-package xyz.chlamydomonos.minigame.items;
+package xyz.chlamydomonos.minigame.items.suondee.axe;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
