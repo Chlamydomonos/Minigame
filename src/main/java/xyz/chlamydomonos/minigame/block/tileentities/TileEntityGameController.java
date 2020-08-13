@@ -31,6 +31,7 @@ import xyz.chlamydomonos.minigame.gui.containers.ContainerGameController;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Random;
 
 public class TileEntityGameController extends TileEntity implements ITickableTileEntity, INamedContainerProvider
 {
@@ -239,7 +240,88 @@ public class TileEntityGameController extends TileEntity implements ITickableTil
 
             if(i <= players.size() / 5)
             {
-                //to be continued
+                LazyOptional<IBinderCapability> spawnPointCap = inventory.getStackInSlot(8).getCapability(BinderCapabilityLoader.BINDER_CAPABILITY);
+                int finalI1 = i;
+                spawnPointCap.ifPresent((s) -> {
+                    BlockPos pos1 = s.getPos1();
+                    BlockPos pos2 = s.getPos2();
+                    AxisAlignedBB spawnPoint = new AxisAlignedBB(pos1.getX(), pos1.getY(), pos1.getZ(), pos2.getX(), pos2.getY(), pos2.getZ());
+                    Random random = new Random();
+
+                    int x0 = random.nextInt((int) (spawnPoint.maxX - spawnPoint.minX)) + (int) spawnPoint.minX;
+                    int y0 = random.nextInt((int) (spawnPoint.maxY - spawnPoint.minY)) + (int) spawnPoint.minY;
+                    int z0 = random.nextInt((int) (spawnPoint.maxZ- spawnPoint.minZ)) + (int) spawnPoint.minZ;
+
+                    players.get(finalI1).teleportKeepLoaded(x0, y0, z0);
+                });
+            }
+            else if (i < players.size() / 5 * 2)
+            {
+                LazyOptional<IBinderCapability> spawnPointCap = inventory.getStackInSlot(4).getCapability(BinderCapabilityLoader.BINDER_CAPABILITY);
+                int finalI1 = i;
+                spawnPointCap.ifPresent((s) -> {
+                    BlockPos pos1 = s.getPos1();
+                    BlockPos pos2 = s.getPos2();
+                    AxisAlignedBB spawnPoint = new AxisAlignedBB(pos1.getX(), pos1.getY(), pos1.getZ(), pos2.getX(), pos2.getY(), pos2.getZ());
+                    Random random = new Random();
+
+                    int x0 = random.nextInt((int) (spawnPoint.maxX - spawnPoint.minX)) + (int) spawnPoint.minX;
+                    int y0 = random.nextInt((int) (spawnPoint.maxY - spawnPoint.minY)) + (int) spawnPoint.minY;
+                    int z0 = random.nextInt((int) (spawnPoint.maxZ- spawnPoint.minZ)) + (int) spawnPoint.minZ;
+
+                    players.get(finalI1).teleportKeepLoaded(x0, y0, z0);
+                });
+            }
+            else if (i < players.size() / 5 * 3)
+            {
+                LazyOptional<IBinderCapability> spawnPointCap = inventory.getStackInSlot(5).getCapability(BinderCapabilityLoader.BINDER_CAPABILITY);
+                int finalI1 = i;
+                spawnPointCap.ifPresent((s) -> {
+                    BlockPos pos1 = s.getPos1();
+                    BlockPos pos2 = s.getPos2();
+                    AxisAlignedBB spawnPoint = new AxisAlignedBB(pos1.getX(), pos1.getY(), pos1.getZ(), pos2.getX(), pos2.getY(), pos2.getZ());
+                    Random random = new Random();
+
+                    int x0 = random.nextInt((int) (spawnPoint.maxX - spawnPoint.minX)) + (int) spawnPoint.minX;
+                    int y0 = random.nextInt((int) (spawnPoint.maxY - spawnPoint.minY)) + (int) spawnPoint.minY;
+                    int z0 = random.nextInt((int) (spawnPoint.maxZ- spawnPoint.minZ)) + (int) spawnPoint.minZ;
+
+                    players.get(finalI1).teleportKeepLoaded(x0, y0, z0);
+                });
+            }
+            else if (i < players.size() / 5 * 4)
+            {
+                LazyOptional<IBinderCapability> spawnPointCap = inventory.getStackInSlot(6).getCapability(BinderCapabilityLoader.BINDER_CAPABILITY);
+                int finalI1 = i;
+                spawnPointCap.ifPresent((s) -> {
+                    BlockPos pos1 = s.getPos1();
+                    BlockPos pos2 = s.getPos2();
+                    AxisAlignedBB spawnPoint = new AxisAlignedBB(pos1.getX(), pos1.getY(), pos1.getZ(), pos2.getX(), pos2.getY(), pos2.getZ());
+                    Random random = new Random();
+
+                    int x0 = random.nextInt((int) (spawnPoint.maxX - spawnPoint.minX)) + (int) spawnPoint.minX;
+                    int y0 = random.nextInt((int) (spawnPoint.maxY - spawnPoint.minY)) + (int) spawnPoint.minY;
+                    int z0 = random.nextInt((int) (spawnPoint.maxZ- spawnPoint.minZ)) + (int) spawnPoint.minZ;
+
+                    players.get(finalI1).teleportKeepLoaded(x0, y0, z0);
+                });
+            }
+            else
+            {
+                LazyOptional<IBinderCapability> spawnPointCap = inventory.getStackInSlot(7).getCapability(BinderCapabilityLoader.BINDER_CAPABILITY);
+                int finalI1 = i;
+                spawnPointCap.ifPresent((s) -> {
+                    BlockPos pos1 = s.getPos1();
+                    BlockPos pos2 = s.getPos2();
+                    AxisAlignedBB spawnPoint = new AxisAlignedBB(pos1.getX(), pos1.getY(), pos1.getZ(), pos2.getX(), pos2.getY(), pos2.getZ());
+                    Random random = new Random();
+
+                    int x0 = random.nextInt((int) (spawnPoint.maxX - spawnPoint.minX)) + (int) spawnPoint.minX;
+                    int y0 = random.nextInt((int) (spawnPoint.maxY - spawnPoint.minY)) + (int) spawnPoint.minY;
+                    int z0 = random.nextInt((int) (spawnPoint.maxZ- spawnPoint.minZ)) + (int) spawnPoint.minZ;
+
+                    players.get(finalI1).teleportKeepLoaded(x0, y0, z0);
+                });
             }
         }
     }

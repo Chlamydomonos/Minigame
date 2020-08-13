@@ -8,6 +8,7 @@ import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
@@ -19,6 +20,7 @@ import xyz.chlamydomonos.minigame.algorithm.IDrawSuondeea;
 import xyz.chlamydomonos.minigame.core.Minigame;
 import xyz.chlamydomonos.minigame.core.loaders.ItemGroupLoader;
 import xyz.chlamydomonos.minigame.core.loaders.ItemLoader;
+import xyz.chlamydomonos.minigame.items.suondee.SuondeeItemTier;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,47 +30,10 @@ public class ItemSuondeeSword extends SwordItem implements IDrawSuondeea
 {
     private String name = "suondee_sword";
 
+    private static IItemTier itemTier = new SuondeeItemTier();
+
     private List<BlockPos> webs;
     private BlockPos origin;
-
-    private static IItemTier itemTier = new IItemTier()
-    {
-        @Override
-        public int getMaxUses()
-        {
-            return 1;
-        }
-
-        @Override
-        public float getEfficiency()
-        {
-            return 10;
-        }
-
-        @Override
-        public float getAttackDamage()
-        {
-            return Float.MAX_VALUE;
-        }
-
-        @Override
-        public int getHarvestLevel()
-        {
-            return 3;
-        }
-
-        @Override
-        public int getEnchantability()
-        {
-            return 30;
-        }
-
-        @Override
-        public Ingredient getRepairMaterial()
-        {
-            return Ingredient.fromItems(ItemLoader.SUONDEE_METAL_INGOT);
-        }
-    };
 
     public ItemSuondeeSword()
     {
@@ -123,15 +88,13 @@ public class ItemSuondeeSword extends SwordItem implements IDrawSuondeea
                 webs = new ArrayList<>();
                 origin = pos;
                 searchWebs(worldIn, pos);
-
                 for (BlockPos i : webs)
                 {
                     worldIn.destroyBlock(i, true, entityLiving);
 
-                    if(random.nextInt(10) == 1)
+                    if(random.nextInt(5) == 1)
                     {
-                        LightningBoltEntity bolt = new LightningBoltEntity(worldIn, i.getX(), i.getY(), i.getZ(), true);
-                        ((ServerWorld) worldIn).addLightningBolt(bolt);
+                        ((ServerWorld) worldIn).spawnParticle(ParticleTypes.EXPLOSION, i.getX(), i.getY(), i.getZ(), random.nextInt(10), 0, 0, 0, 0);
                     }
                 }
             }

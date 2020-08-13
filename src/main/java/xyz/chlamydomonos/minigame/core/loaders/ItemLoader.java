@@ -6,11 +6,10 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import xyz.chlamydomonos.minigame.core.Minigame;
 import xyz.chlamydomonos.minigame.items.*;
-import xyz.chlamydomonos.minigame.items.suondee.ItemSuondeeMaterial;
-import xyz.chlamydomonos.minigame.items.suondee.ItemSuondeeMetalIngot;
-import xyz.chlamydomonos.minigame.items.suondee.ItemSuondeeMetalNugget;
+import xyz.chlamydomonos.minigame.items.suondee.*;
 import xyz.chlamydomonos.minigame.items.suondee.axe.*;
 import xyz.chlamydomonos.minigame.items.suondee.sword.*;
+import xyz.chlamydomonos.minigame.items.suondee.pickaxe.*;
 
 @Mod.EventBusSubscriber(modid = Minigame.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemLoader
@@ -35,6 +34,7 @@ public class ItemLoader
     public static final Item DENSE_SUONDEE_AXE = new ItemDenseSuondeeAxe();
     public static final Item SHANG_DI_AXE = new ItemShangDiAxe();
     public static final Item I_AM_OVER = new ItemOver();
+    public static final Item SUONDEE_PICKAXE = new ItemSuondeePickaxe();
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event)
@@ -59,7 +59,9 @@ public class ItemLoader
                 RECOMPRESSED_SUONDEE_AXE,
                 DENSE_SUONDEE_AXE,
                 SHANG_DI_AXE,
-                I_AM_OVER
+                I_AM_OVER,
+                SHANG_DI_AXE,
+                SUONDEE_PICKAXE
         );
     }
 }

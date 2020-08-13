@@ -11,7 +11,6 @@ import net.minecraft.item.AxeItem;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
@@ -22,7 +21,7 @@ import net.minecraft.world.server.ServerWorld;
 import xyz.chlamydomonos.minigame.algorithm.IDrawSuondeea;
 import xyz.chlamydomonos.minigame.core.Minigame;
 import xyz.chlamydomonos.minigame.core.loaders.ItemGroupLoader;
-import xyz.chlamydomonos.minigame.core.loaders.ItemLoader;
+import xyz.chlamydomonos.minigame.items.suondee.SuondeeItemTier;
 
 import java.util.Random;
 
@@ -30,44 +29,7 @@ public class ItemShangDiAxe extends AxeItem implements IDrawSuondeea
 {
     private String name = "shang_di_axe";
 
-    private static IItemTier itemTier = new IItemTier()
-    {
-        @Override
-        public int getMaxUses()
-        {
-            return 1;
-        }
-
-        @Override
-        public float getEfficiency()
-        {
-            return 10;
-        }
-
-        @Override
-        public float getAttackDamage()
-        {
-            return Float.MAX_VALUE;
-        }
-
-        @Override
-        public int getHarvestLevel()
-        {
-            return 3;
-        }
-
-        @Override
-        public int getEnchantability()
-        {
-            return 30;
-        }
-
-        @Override
-        public Ingredient getRepairMaterial()
-        {
-            return Ingredient.fromItems(ItemLoader.SUONDEE_METAL_INGOT);
-        }
-    };
+    private static IItemTier itemTier = new SuondeeItemTier();
 
     public ItemShangDiAxe()
     {

@@ -47,12 +47,11 @@ public class ItemStartGameButtonBinder extends Item {
     public ActionResultType onItemUse(ItemUseContext context)
     {
         LazyOptional<ISingleBinderCapability> StartGameButtonBinderCap = context.getItem().getCapability(SingleBinderCapabilityLoader.SINGLE_BINDER_CAPABILITY);
-        StartGameButtonBinderCap.ifPresent(
-                (s) -> {
-                    s.setPos(context.getPos());
-                    if(!context.getWorld().isRemote)
-                        context.getPlayer().sendMessage(new StringTextComponent("Point set to " + context.getPos().getX() + ", " + context.getPos().getY() + ", " + context.getPos().getZ()));
-                });
+        StartGameButtonBinderCap.ifPresent((s) -> {
+            s.setPos(context.getPos());
+            if(!context.getWorld().isRemote)
+                context.getPlayer().sendMessage(new StringTextComponent("Point set to " + context.getPos().getX() + ", " + context.getPos().getY() + ", " + context.getPos().getZ()));
+        });
 
         return ActionResultType.SUCCESS;
     }
