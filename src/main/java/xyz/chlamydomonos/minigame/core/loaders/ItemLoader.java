@@ -34,6 +34,7 @@ public class ItemLoader
     public static final Item RECOMPRESSED_SUONDEE_AXE = new ItemRecompressedSuondeeAxe();
     public static final Item DENSE_SUONDEE_AXE = new ItemDenseSuondeeAxe();
     public static final Item SHANG_DI_AXE = new ItemShangDiAxe();
+    public static final Item I_AM_OVER = new ItemOver();
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event)
@@ -57,7 +58,8 @@ public class ItemLoader
                 COMPRESSED_SUONDEE_AXE,
                 RECOMPRESSED_SUONDEE_AXE,
                 DENSE_SUONDEE_AXE,
-                SHANG_DI_AXE
+                SHANG_DI_AXE,
+                I_AM_OVER
         );
     }
 }
